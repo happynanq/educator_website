@@ -1,0 +1,16 @@
+.item{
+  color:#fff;
+}
+.item div {
+  display: inline;
+  padding: 10px;
+}
+.item img{
+  padding: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.item p {
+  padding-left: 10px;
+}
