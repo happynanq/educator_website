@@ -24,7 +24,8 @@ const  Users = (props)=>{
           <div key={u.id}>
             <span>
               <div className={s.photo}>
-                <img
+
+                  <img
                   src={u.photos.small != null ? u.photos.small : UserIcon}
                   alt="Avatar"
                 />
