@@ -1,5 +1,8 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const SET_USER_PROFILE = "SET_USER_PROFILE";
+
+
 
 let initialState = {
       posts: [
@@ -7,6 +10,7 @@ let initialState = {
         { message: "Nice social network ", id: 2, likesCount: 13 },
       ],
       newPostText: "abc",
+      profile:null
     }
 
 export const profileReducer = (state=initialState, action) => {
@@ -30,7 +34,11 @@ export const profileReducer = (state=initialState, action) => {
       stateCopy.newPostText = action.newText;
       // this._callSubscribe(this.getState());
       return stateCopy
-    
+
+      case SET_USER_PROFILE:
+
+        return{...state, profile:action.profile}
+      
     default:
 
       console.log("[NoProfileReducer]")
@@ -47,6 +55,13 @@ export const changePostActionCreator = (text) => {
 export const addPostActionCreator = (text) => {
   return {
     type: ADD_POST,
-    text: text,
+    text,
+  };
+};
+
+export const setUserProfile = (profile) => {
+  return {
+    type: SET_USER_PROFILE,
+    profile
   };
 };

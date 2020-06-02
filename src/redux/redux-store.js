@@ -19,6 +19,6 @@ console.log("ReduxStore center")
 let store = createStore(reducers)
 
 console.log("ReduxStore end", store.dispatch)
-
+window.store = store
 
 export default store

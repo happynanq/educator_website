@@ -1,0 +1,25 @@
+.wrapper{
+  border: 10px solid #000;
+  display: flex;
+  flex-wrap: wrap;
+}
+.wrapper__block_1{
+  flex: 0 0 100%;
+  /* border: 122px solid 000; */
+}
+.wrapper__block_2{
+  display: flex;  
+  justify-content: space-between;
+
+}
+.wrapper__content_1 img{
+  padding: 10px 0 0 10px;
+  border-radius: 50%;
+}
+.wrapper__content_2{
+  
+}
+.wrapper__content_3{
+  position: relative;
+  left: 50px;
+}
