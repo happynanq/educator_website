@@ -1,24 +1,23 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
 import {profileReducer} from './profileReducer'
 import {dialogsReducer} from './dialogsReducer'
 import {navbarReducer} from './navbarReducer'
 import { usersReducer } from "./usersReducer";
-
-console.log("ReduxStore start")
+import { authReducer } from "./authReducer";
+import thunkMiddleware from 'redux-thunk'
 
 let reducers = combineReducers({
   profilePage:profileReducer,
   dialogsPage:dialogsReducer,
   navbarPage:navbarReducer,
-  usersPage:usersReducer
+  usersPage:usersReducer,
+  auth : authReducer
 })
 
-console.log("ReduxStore center")
 
 
-let store = createStore(reducers)
+let store = createStore(reducers, applyMiddleware(thunkMiddleware))
 
-console.log("ReduxStore end", store.dispatch)
 window.store = store
 
-export default store
+export default store 

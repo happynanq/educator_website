@@ -1,3 +1,5 @@
+import { axiosReqMethods } from "../api/api";
+
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
@@ -41,7 +43,6 @@ export const profileReducer = (state=initialState, action) => {
       
     default:
 
-      console.log("[NoProfileReducer]")
       return state
   }
 
@@ -65,3 +66,20 @@ export const setUserProfile = (profile) => {
     profile
   };
 };
+
+export const renderUserProfile = (checkUserId)=>(dispatch)=>{
+  axiosReqMethods.getAuthUserData()
+    .then(res=>{
+      console.log('object', res.data)
+      let userId= res.data.id 
+      console.log(userId, 'userod');
+      userId = checkUserId ? checkUserId : userId
+      console.log(userId, 'userod');
+
+      axiosReqMethods.getProfilePage(userId)
+        .then((data) => {
+            dispatch(setUserProfile(data))
+      
+        });
+    })
+}

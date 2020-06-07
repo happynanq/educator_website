@@ -19,7 +19,7 @@ const ProfileInfo = (props)=>{
       </div>
       <div className={s.wrapper__block +' '+ s.wrapper__block_2}>
         <div className={s.wrapper__content + " " + s.wrapper__content_1}>
-          <img src={props.profile.photos.large} alt=""/>
+          <img src={props.profile.photos.large} alt="AVATAR"/>
         </div>  
         <div className={s.wrapper__content + " " + s.wrapper__content_2} >
           <div className={s.fullName}>{props.profile.fullName}</div>

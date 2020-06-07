@@ -33,7 +33,6 @@ export const dialogsReducer = (state=initialState, action) => {
       return stateCopy
     }
     default:
-      console.log("[NoDialogsReducer]")
       return state
   }
 };
