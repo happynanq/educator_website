@@ -9,23 +9,23 @@ class HeaderContainer extends React.Component{
   componentDidMount(){
     console.log(this.props.login, 'login');
       this.props.registerCurrentUser()
-        axiosReqMethods.getAuthUserData()
-        .then((response) => {
-          if(response.resultCode === 0 ){
-            // let {id, email, login} = response.data.data 
-            let userData = {...response.data}
-            // console.log(response.data, "data");
-            // this.props.setAuthUserData(userData)
-            this.props.setAuthUserData(userData.id,  userData.email, userData.login)  
-            axiosReqMethods.getProfilePage(userData.id)      
-                  .then(response=>{
-                    let uPhoto = response.photos.small;
-                    if(uPhoto){
-                      this.props.setAuthInfo(response.photos.uPhoto)
-                    }
-                  })
-          }
-          })
+        // axiosReqMethods.getAuthUserData()
+        // .then((response) => {
+        //   if(response.resultCode === 0 ){
+        //     // let {id, email, login} = response.data.data 
+        //     let userData = {...response.data}
+        //     // console.log(response.data, "data");
+        //     // this.props.setAuthUserData(userData)
+        //     this.props.setAuthUserData(userData.id,  userData.email, userData.login)  
+        //     axiosReqMethods.getProfilePage(userData.id)      
+        //           .then(response=>{
+        //             let uPhoto = response.photos.small;
+        //             if(uPhoto){
+        //               this.props.setAuthInfo(response.photos.uPhoto)
+        //             }
+        //           })
+        //   }
+        //   })
         
 
   }

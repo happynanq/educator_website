@@ -10,6 +10,8 @@ import React from "react";
 import Users from "./Users";
 import Preloader from "../common/preloader/preloader";
 import {  axiosReqMethods } from '../../api/api';
+import { compose } from 'redux';
+import { witchAuthRedirect } from '../../hok/WithAuthRedirect';
 
 class UsersContainer extends React.Component {
  
@@ -56,7 +58,34 @@ let mapStateToProps = (state)=>{
   }
 }
 
-//
+
+export default compose(
+  connect(mapStateToProps, {
+    follow,unfollow,
+    setCurrentPage,
+    toggleIsFollowingProgress,
+    getUsers
+  }),
+  witchAuthRedirect)
+  (UsersContainer)
+
+
+
+
+
+
+
+
+  
+// witchAuthRedirect()
+
+// export default connect(mapStateToProps, {
+//   follow,unfollow,
+//   setCurrentPage,
+//   toggleIsFollowingProgress,
+//   getUsers
+// })(UsersContainer)
+
 // let mapDispatchToProps = (dispatch)=>{
 //   return{
 //     follow:(userId)=>{
@@ -76,9 +105,3 @@ let mapStateToProps = (state)=>{
 //     }
 //   }
 // }
-export default connect(mapStateToProps, {
-  follow,unfollow,
-  setCurrentPage,
-  toggleIsFollowingProgress,
-  getUsers
-})(UsersContainer)

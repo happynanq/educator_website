@@ -52,7 +52,7 @@ let mapStateToProps = (state)=>{
   } 
 }
 
-let mapDispathToProps = (dispatch)=>{
+let mapDispatchToProps = (dispatch)=>{
   return{
     changePost:(text)=>{
       dispatch(changePostActionCreator(text));
@@ -63,7 +63,7 @@ let mapDispathToProps = (dispatch)=>{
   } 
 }
 
-const MyPostsContainer = connect(mapStateToProps, mapDispathToProps)(MyPosts)
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 
 
 export default MyPostsContainer;

@@ -54,9 +54,9 @@ export const usersReducer = (state = initialState, action) => {
     case TOGGLE_IS_FOLLOWING:
       return {
         ...state,
-        followingInProgress: action.isFetching
-          ? [...state.followingInProgress, action.userId]
-          : state.followingInProgress.filter((id) => id !== action.userId),
+        followingInProgress: action.isFetching 
+          ? [...state.followingInProgress, action.userId] // add prev users + current
+          : state.followingInProgress.filter((id) => {debugger; return id !== action.userId}),
       };
     default:
       return state;
@@ -100,34 +100,34 @@ export const toggleIsFollowingProgress = (isFetching, userId) => {
   };
 }
 
-export const getUsers = (pageNumber, pageSize) => (dispath) => {
-  dispath(toggleIsFetching(true));
+export const getUsers = (pageNumber, pageSize) => (dispatch) => {
+  dispatch(toggleIsFetching(true));
 
   axiosReqMethods.getUser(pageNumber, pageSize).then((data) => {
-    dispath(setUsers(data.items));
-    dispath(setTotalUsersCount(data.totalCount));
-    dispath(toggleIsFetching(false));
+    dispatch(setUsers(data.items));
+    dispatch(setTotalUsersCount(data.totalCount));
+    dispatch(toggleIsFetching(false));
   });
 }
 
-export const follow = (userId) => (dispath) => {
+export const follow = (userId) => (dispatch) => {
 
-  dispath(toggleIsFollowingProgress(true, userId))
+  dispatch(toggleIsFollowingProgress(true, userId))
   axiosReqMethods
     .follow(userId)
     .then((response) => {
       console.log("follow", response.data.resultCode)
 
       if (response.data.resultCode === 0) {
-        followSuccess(userId);
-        toggleIsFollowingProgress(false, userId);
+        dispatch(followSuccess(userId))
+        dispatch(toggleIsFollowingProgress(false, userId))
       }
     })
 }
 
-export const unfollow = (userId) => (dispath) => {
+export const unfollow = (userId) => (dispatch) => {
 debugger
-dispath(toggleIsFollowingProgress(true, userId))
+dispatch(toggleIsFollowingProgress(true, userId))
 axiosReqMethods
   .unfollow(userId)
 
@@ -135,8 +135,9 @@ axiosReqMethods
 
     if (response.data.resultCode === 0) {
       
-      followSuccess(userId);
-      toggleIsFollowingProgress(false, userId);
+      dispatch(followSuccess(userId))
+      dispatch(toggleIsFollowingProgress(false, userId))
+
     }
   })
 

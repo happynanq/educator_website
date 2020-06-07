@@ -53,8 +53,11 @@ const store = {
     this._callSubscribe = observer;
   },
   //!DISPATH
-  dispath(action) {
-
+  dispath(action) { // !rus
+                    // ?Ошибка(dispatCh, у меня dispath(без "C" )), но код старый, не работает сейчас,
+                    // ?думаю исправлять не нужно(впринципе, бессмысленно)
+                    // ! eng
+                    // ? spelling mistake (dispath, instead dispatCh ), i don't want correct old mistakes :D
     this._state.profilePage= profileReducer(this._state.profilePage, action)
     this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
     this._state.navbarPage = navbarReducer(this._state.navbarPage, action)

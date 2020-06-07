@@ -12,10 +12,10 @@ const ProfileInfo = (props)=>{
   return (
     <div className={s.wrapper}>
       <div className={s.wrapper__block +' '+ s.wrapper__block_1}>
-        <img
+        {/* <img
           src="https://images.wallpaperscraft.ru/image/dorozhka_les_derevo_trava_ten_zelen_leto_zapovednik_prostory_peyzazh_61199_2560x1440.jpg"
           alt="content-img"
-        />
+        /> */}
       </div>
       <div className={s.wrapper__block +' '+ s.wrapper__block_2}>
         <div className={s.wrapper__content + " " + s.wrapper__content_1}>

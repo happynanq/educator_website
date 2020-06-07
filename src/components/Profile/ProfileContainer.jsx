@@ -3,9 +3,9 @@ import Content from './Profile';
 import * as axios from "axios";
 import { connect } from 'react-redux';
 import { setUserProfile, renderUserProfile } from '../../redux/profileReducer';
-import { withRouter } from 'react-router-dom';
-import { initialState } from '../../redux/authReducer';
-import { axiosReqMethods } from '../../api/api';
+import { withRouter, Redirect } from 'react-router-dom';
+import { witchAuthRedirect } from '../../hok/WithAuthRedirect';
+import { compose } from 'redux';
 
 
 class ProfileContainer extends React.Component{
@@ -14,20 +14,6 @@ class ProfileContainer extends React.Component{
     let checkUserId = this.props.match.params.userId;
     console.log('checkUserId', checkUserId);
     this.props.renderUserProfile(checkUserId)
-    
-    // axiosReqMethods.getAuthUserData()
-    // .then(res=>{
-    //   // console.log("HELLO");
-    //   let userId= res.data.id 
-    //   console.log(userId, 'userod');
-    //   userId = checkUserId ? checkUserId : userId
-
-    //   axiosReqMethods.getProfilePage(userId)
-    //     .then((data) => {
-    //         this.props.setUserProfile(data);
-      
-    //     });
-    // })
   }
 
   render(){
@@ -37,13 +23,35 @@ class ProfileContainer extends React.Component{
   }
 }
 
+// (props)=>{
+//   if(!props.isAuth ){
+//     return <Redirect to="/login" />
+//   }
+//   return <ProfileContainer {...props}/>
+// }
+
+let AuthRedirectComponent = witchAuthRedirect(ProfileContainer)
+
+
+
+
+
+
+
 let mapStateToProps=(state)=>{
   return{
-    profile:state.profilePage.profile
+    profile:state.profilePage.profile,
   }
 }
+compose(
+  connect(mapStateToProps,{
+    setUserProfile,renderUserProfile
+  }),
+  withRouter,
+  // witchAuthRedirect
+)(ProfileContainer)
 
-let WithUrlDataContainerComponent = withRouter(ProfileContainer)
+let WithUrlDataContainerComponent = withRouter(AuthRedirectComponent)
 
 
 export default connect(mapStateToProps,{
