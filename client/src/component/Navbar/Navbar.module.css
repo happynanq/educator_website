@@ -1,0 +1,15 @@
+.navigation{
+  height: 100%;
+}
+.test{
+  /* background-color: #fff; */
+  /* display: flex;
+  justify-content: center; */
+  /* padding-left: 10px; */
+}
+div>a{
+  color: black;
+}
+nav>div{
+  padding-left: 10px;
+}

@@ -1,0 +1,9 @@
+@import "~materialize-css/dist/css/materialize.min.css";
+
+body{
+  background-color: burlywood;
+}
+.row>div.s3{
+  background-color: #fff;
+  height: 100vh; 
+}
