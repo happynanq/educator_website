@@ -90,7 +90,7 @@ router.post("/login", [
       )
 
       res.json({token, userId:user.id})
-      
+      // TODO: записать данные в ui->bll(redux)
   } catch (e) {
     res.status(400).json({message:"Неизвестная ошибка регистрации"})
   }
