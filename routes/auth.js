@@ -6,43 +6,56 @@ const jwt = require("jsonwebtoken")
 const config = require("config")
 const router = Router()
 
-// /api/auth
-router.get("/",(req,res)=>{
-  res.redirect("/login")
+// /api/auth/register
+router.get("/register",(req,res)=>{
+  res.send("Hello")
 })
 // lYWNo2W95meVg19D
 router.post("/register",[
   check("email").isEmail(),
   check("password").isLength({min:6})
 ], async(req, res)=>{
-  
+
+  console.log("req.body register : ",req.body)
+
   try {
-    console.log("req.body",req.body)
+    console.log("object1")
+    // res.setHeader('Access-Control-Allow-Origin', '*')
+    // res.setHeader('wewePower', 'wewe')
 
     const errors = validationResult(req)
-    if(errors.isEmpty()){
+    if(!errors.isEmpty()){
       return res.status(400).json({
-        message : "Ошибка аунтификации: некорректны данные регистрации ",
+        message : "Ошибка аутентификацию: некорректны данные регистрации ",
         errors: errors.array()
       })
     }
+    console.log("object2")
+
     const {email,password} = req.body
+    console.log("wewePOWER")
     const candidate = await User.findOne({email})
     if(candidate){
+      console.log('candidate ', candidate)
       res.status(400).json({message: "Такой email уже существует"})
     }
-    const hashedPassword = bcrypt.hash(password, 12)
+
+    const hashedPassword = await bcrypt.hash(password, 12)
     const user = new User({
       email, password: hashedPassword
     })
-    user.save()
-
+    console.log("hashedPassword", hashedPassword)
+    await user.save()
+    console.log("object")
     res.status(201).json({message:"Пользователь успешно создан"})
+
   } catch (e) {
-    console.log("registerError",e)
+    console.log("my registerError: ",e)
     res.status(500).json({message:`что-то пошло не так при регистрации, ${e}`})
   }
 })
+
+// /api/auth/login
 
 router.post("/login", [
   check("email").normalizeEmail().isEmail(),
@@ -51,11 +64,11 @@ router.post("/login", [
 ],
   async(req, res)=>{
     try {
-      console.log("req.body",req.body)
+      console.log("req.body login : ",req.body)
       const errors = validationResult(req)
-      if(errors.isEmpty()){
+      if(!errors.isEmpty()){
         return res.status(400).json({
-          message : "Ошибка аунтификации: некорректны данные при входе ",
+          message : "Ошибка аутентификацию: некорректны данные при входе ",
           errors: errors.array()
         })
       }

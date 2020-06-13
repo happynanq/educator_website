@@ -11,7 +11,9 @@ const RegisterContainer = (props)=>{
 }
 
 const mapStateToProps = state=>{
-
+  return{
+    
+  }
 }
 
 export default connect(mapStateToProps, {

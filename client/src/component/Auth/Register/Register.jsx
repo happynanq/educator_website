@@ -1,12 +1,14 @@
 import React from 'react';
 import { reduxForm, Field } from 'redux-form';
 import RegisterForm from './RegisterForm';
+import { authApi } from '../../../api/api';
+
 
 const Register = (props)=>{
 
   const onSubmit = formData=>{
     console.log("formData",formData);
-
+    authApi.sendLogin(formData)
   }
 
   return(

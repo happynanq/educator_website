@@ -2,11 +2,16 @@ const express  = require("express")
 const { request } = require("express")
 const mongoose = require("mongoose")
 const config = require("config")
-
+const bodyParser = require('body-parser')
+const cors = require("cors")
 const app = express()
-app.get("/", (req, res)=>{
-  res.send("Hi")
-})
+app.use(cors())
+
+
+
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json({extended:true}))
+app.use(express.json({extended:true})) // ? какая то хрень
 app.use("/api/auth", require("./routes/auth"))
 
 async function start(){

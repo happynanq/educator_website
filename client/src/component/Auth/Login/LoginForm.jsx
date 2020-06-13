@@ -1,14 +1,9 @@
-import React from 'react';
-import { reduxForm, Field } from 'redux-form';
+import React from "react";
+import { reduxForm, Form, Field } from "redux-form";
 
- const RegisterForm = (props)=>{
-  
-  // console.log("handleSubmit", props.handleSubmit );
-
-  return(
-    
-      <form action="" className="col s12" onSubmit={props.handleSubmit }> 
-        
+const LoginForm = (props) => {
+  return (
+      <form className="col s12" onSubmit={props.handleSubmit}>
 
         <div className="row">
           <div className="input-field col s12">
@@ -24,16 +19,13 @@ import { reduxForm, Field } from 'redux-form';
           </div>
         </div>
 
-        
+        <button className="btn">Войти</button>
 
-
-        <button className="btn">Регистрация</button>
       </form>
-  )
-}
-// !пробелма в редакс форме
-const LoginReduxForm = reduxForm({
+  );
+};
+const RegisterReduxForm = reduxForm({
   form:"register"
-})(RegisterForm)
+})(LoginForm) 
 
-export default LoginReduxForm
+export default RegisterReduxForm

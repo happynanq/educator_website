@@ -5,16 +5,16 @@ import s from "./Navbar.module.css"
   return(
     <nav className={s.navigation}>
       <div>
-        <Link>Главная страница</Link>
+        <Link to="#">Главная страница</Link>
       </div>
       <div>
-        <Link>Блог</Link>
+        <Link to="#">Блог</Link>
       </div>
       <div className={s.test}>
-        <Link>я</Link>
+        <Link to="#">я</Link>
       </div>
       <div>
-        <Link>обо мне</Link>
+        <Link to="#">обо мне</Link>
       </div>  
     </nav>
   )
