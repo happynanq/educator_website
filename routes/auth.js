@@ -8,6 +8,8 @@ const router = Router()
 
 // /api/auth/register
 router.get("/register",(req,res)=>{
+  console.log("req.session",req.session)
+
   res.send("Hello")
 })
 // lYWNo2W95meVg19D
@@ -15,6 +17,7 @@ router.post("/register",[
   check("email").isEmail(),
   check("password").isLength({min:6})
 ], async(req, res)=>{
+  console.log("req.session",req.session)
 
   console.log("req.body register : ",req.body)
 
@@ -37,7 +40,7 @@ router.post("/register",[
     const candidate = await User.findOne({email})
     if(candidate){
       console.log('candidate ', candidate)
-      res.status(400).json({message: "Такой email уже существует"})
+      res.status(400).json({falseMessage: "Такой email уже существует"})
     }
 
     const hashedPassword = await bcrypt.hash(password, 12)
@@ -47,11 +50,11 @@ router.post("/register",[
     console.log("hashedPassword", hashedPassword)
     await user.save()
     console.log("object")
-    res.status(201).json({message:"Пользователь успешно создан"})
+    res.status(201).json({falseMessage:"Пользователь успешно создан"})
 
   } catch (e) {
     console.log("my registerError: ",e)
-    res.status(500).json({message:`что-то пошло не так при регистрации, ${e}`})
+    res.status(500).json({falseMessage:`что-то пошло не так при регистрации, ${e}`})
   }
 })
 
@@ -63,24 +66,25 @@ router.post("/login", [
 
 ],
   async(req, res)=>{
+    console.log("req.session",req.session)
     try {
       console.log("req.body login : ",req.body)
       const errors = validationResult(req)
       if(!errors.isEmpty()){
         return res.status(400).json({
-          message : "Ошибка аутентификацию: некорректны данные при входе ",
+          falseMessage : "Ошибка аутентификацию: некорректны данные при входе ",
           errors: errors.array()
         })
       }
       const {email,password} = req.body
       const user = await User.findOne({email})
       if(!user){
-        res.status(400).json({message:"Неверные данные(емаил)"})       
+        res.status(400).json({falseMessage:"Неверные данные(емаил)"})       
       }
 
       const isMath = await bcrypt.compare(password, user.password)
       if(!isMath){
-        return res.status(400).json({message:"Неверные данные(пароль) "})
+        return res.status(400).json({falseMessage:"Неверные данные(пароль) "})
       }
 
       const token = jwt.sign(
@@ -89,10 +93,10 @@ router.post("/login", [
         {expiresIn:"1h"}
       )
 
-      res.json({token, userId:user.id})
+      res.json({token, userId:user.id, message:"welcome"})
       // TODO: записать данные в ui->bll(redux)
   } catch (e) {
-    res.status(400).json({message:"Неизвестная ошибка регистрации"})
+    res.status(400).json({falseMessage:"Неизвестная ошибка регистрации"})
   }
 })
 

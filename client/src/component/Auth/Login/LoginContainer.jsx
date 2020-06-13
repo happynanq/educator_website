@@ -1,6 +1,7 @@
 import React from 'react';
 import  Login  from './Login';
-import { reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
+import { loginUser } from '../../../redux/authReducer';
 
  const LoginConteiner = (props)=>{
   
@@ -9,4 +10,9 @@ import { reduxForm } from 'redux-form';
   )
 }
 
-export default LoginConteiner
+let mapStateToProps = (store)=>{
+  
+}
+export default connect(mapStateToProps, {
+  loginUser
+})(LoginConteiner)
