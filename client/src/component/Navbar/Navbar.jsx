@@ -8,7 +8,7 @@ import s from "./Navbar.module.css"
         <Link to="#">Главная страница</Link>
       </div>
       <div>
-        <Link to="#">Блог</Link>
+        <Link to="/blog">Блог</Link>
       </div>
       <div className={s.test}>
         <Link to="#">я</Link>

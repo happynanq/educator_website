@@ -1,10 +1,11 @@
 export const  handleMessage= (func)=>{
-  debugger
   return func.then((data)=>{
+    debugger
     if(data.falseMessage){
       let fmes=data.falseMessage // fmes == falseMessage
       window.M.toast({html:fmes,classes: 'rounded'})
-      return data
+      debugger
+      return "error"
 
     }
     else if(data.message){

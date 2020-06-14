@@ -16,7 +16,7 @@ const configRequest = {
 
 
 export const authApi ={
-  sendLogin(formData){
+  sendLogin(formData){ // !register
     let body = formData
     body=JSON.stringify(body)
     return fetch("http://localhost:5000/api/auth/register",{
@@ -30,7 +30,7 @@ export const authApi ={
       return data
     })
   },
-  checkLogin(formData){
+  checkLogin(formData){ // !login
     let body = JSON.stringify(formData)
     return fetch("http://localhost:5000/api/auth/login",{
       ...configRequest,

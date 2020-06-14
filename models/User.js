@@ -6,7 +6,9 @@ const schema = new Schema({
   
   password: {type:String, required:true},
   email:{type:String, required:true},
-  links:[{type:Schema.Types.ObjectId, ref:"Link"}]
+  privilege : {type:String, default:"User"},
+  userName:{type:String, required:true},
+  links:[{type:Schema.Types.ObjectId, ref:"Post"}]
   
 
 })

@@ -43,7 +43,7 @@ async function start(){
       console.log("[Server has been started]")
     })
   } catch (error) {
-    console.log("[Server Error] ")
+    console.log("[Server Error] ", error)
     process.exit(1)
   }
 }

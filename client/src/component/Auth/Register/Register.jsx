@@ -3,14 +3,21 @@ import { reduxForm, Field } from 'redux-form';
 import RegisterForm from './RegisterForm';
 import { authApi } from '../../../api/api';
 import { handleMessage } from '../handleMessages';
+import { useHistory } from 'react-router-dom';
 
 
 const Register = (props)=>{
-
-  const onSubmit = (formData)=>{
+  const history = useHistory()
+  const onSubmit = async(formData)=>{
     console.log("formDataRegister",formData);
     let toHandle = authApi.sendLogin(formData)
-    handleMessage(toHandle)
+    let a = await handleMessage(toHandle) 
+    debugger
+    if(a === "error"){
+      return
+    }
+    
+    history.push('/auth/login')
   }
 
   return(

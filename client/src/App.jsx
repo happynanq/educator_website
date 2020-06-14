@@ -7,9 +7,9 @@ import LoginConteiner from './component/Auth/Login/LoginContainer';
 import "./index.css"
 import 'materialize-css'
 import { loginUser } from './redux/authReducer';
+import BlogContainer from './component/Blog/BlogContainer';
 
 const App=(props)=> {
-  debugger
   return (
     
       <div className="">
@@ -23,18 +23,21 @@ const App=(props)=> {
           <div className="col s9">
             {/* ! LOGIC */}
             <Switch>
-            {/* props.store.getState().auth.token */}
-              { localStorage.getItem("userData") ? 
-              <Redirect to='/home'/> : 
-                <>
-                  <Route path="/auth/register">
-                    <RegisterContainer/>
-                  </Route>
-                  <Route path="/auth/login">
-                    <LoginConteiner/>
-                  </Route>
-                </>
-              }
+
+              <Route path="/auth/register">
+                <RegisterContainer/>
+              </Route>
+
+              <Route path="/auth/login">
+                <LoginConteiner/>
+              </Route>
+
+              <Route 
+                path="/blog" 
+                render ={()=><BlogContainer/> }
+
+              />
+
             </Switch>
           </div>
         </div>

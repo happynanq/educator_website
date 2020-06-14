@@ -5,13 +5,13 @@ const initialState = {
   fucus:false,
   token:null,
   userId:null,
+  role : "User",
   storageName : "userData",
 }
 
 export const authReducer = (state=initialState, action)=>{
   switch (action.type) {
     case LOGIN_USER:
-    debugger
       return{
         ...state, token:action.token, userId:action.userId
       }
@@ -24,7 +24,6 @@ export const authReducer = (state=initialState, action)=>{
   }
 }
 export const loginUser=(userId, token)=>{
-  debugger
   localStorage.setItem("userData",JSON.stringify({userId, token}))
   return{
     type:LOGIN_USER,

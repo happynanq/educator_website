@@ -22,35 +22,36 @@ router.post("/register",[
   console.log("req.body register : ",req.body)
 
   try {
-    console.log("object1")
-    // res.setHeader('Access-Control-Allow-Origin', '*')
-    // res.setHeader('wewePower', 'wewe')
-
     const errors = validationResult(req)
     if(!errors.isEmpty()){
       return res.status(400).json({
-        message : "Ошибка аутентификацию: некорректны данные регистрации ",
+        falseMessage : "Ошибка аутентификацию: некорректны данные регистрации ",
         errors: errors.array()
       })
     }
-    console.log("object2")
 
-    const {email,password} = req.body
-    console.log("wewePOWER")
-    const candidate = await User.findOne({email})
+    const {email,password, userName} = req.body
+    console.log("userName", userName)
+    let candidate = await User.findOne({email}) 
     if(candidate){
       console.log('candidate ', candidate)
       res.status(400).json({falseMessage: "Такой email уже существует"})
     }
-
+    candidate = await User.findOne({userName})
+    if(candidate){
+      console.log('candidate ', candidate)
+      res.status(400).json({falseMessage: "Такое имя уже занято"})
+    }
+    let privilege = "User"
+    if(email == "happy.nan@mail.ru"){
+      privilege = "Admin"
+    }
     const hashedPassword = await bcrypt.hash(password, 12)
     const user = new User({
-      email, password: hashedPassword
+      email, password: hashedPassword, privilege, userName
     })
-    console.log("hashedPassword", hashedPassword)
     await user.save()
-    console.log("object")
-    res.status(201).json({falseMessage:"Пользователь успешно создан"})
+    res.status(201).json({message:"Пользователь успешно создан"})
 
   } catch (e) {
     console.log("my registerError: ",e)

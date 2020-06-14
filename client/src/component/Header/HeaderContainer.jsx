@@ -10,7 +10,6 @@ class HeaderContainer extends React.Component {
   //   this.props = props
   // }
   componentDidMount(){
-    debugger
     let checkRegister = JSON.parse( localStorage.getItem("userData"))
     if(!checkRegister){
       return
