@@ -4,7 +4,6 @@ import { reduxForm, Field } from 'redux-form';
  const RegisterForm = (props)=>{
   
   // console.log("handleSubmit", props.handleSubmit );
-
   return(
     
       <form action="" className="col s12" onSubmit={props.handleSubmit }> 

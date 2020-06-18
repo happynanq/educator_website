@@ -8,7 +8,10 @@ const schema = new Schema({
   email:{type:String, required:true},
   privilege : {type:String, default:"User"},
   userName:{type:String, required:true},
-  links:[{type:Schema.Types.ObjectId, ref:"Post"}]
+  userId:{
+    type:Schema.Types.ObjectId,
+    ref:"Post"
+  }
   
 
 })

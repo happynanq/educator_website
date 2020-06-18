@@ -4,8 +4,9 @@ const schema = new Schema({
   // registerDate: (new Date).toLocaleDateString(),
   
   text:{type:String, required:true},
-  img:[{type:String, required:true}],
-  file:[{}],
+  titleText:{type:String},
+  titleImg:{type:String, required:true},
+  file:[{type:String}],
   links:[{type:Schema.Types.ObjectId, ref:"User"}]
   
 

@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json({extended:true}))
 app.use(express.json({extended:true})) // ? какая то хрень
 app.use("/api/auth", require("./routes/auth"))
+app.use("/api/card", require("./routes/card"))
 
 app.use(session({
   secret:"My secret key",

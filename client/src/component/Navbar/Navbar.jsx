@@ -10,6 +10,9 @@ import s from "./Navbar.module.css"
       <div>
         <Link to="/blog">Блог</Link>
       </div>
+      <div>
+        <Link to="/create/article">Добавить статью</Link>
+      </div> 
       <div className={s.test}>
         <Link to="#">я</Link>
       </div>

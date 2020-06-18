@@ -8,6 +8,7 @@ import "./index.css"
 import 'materialize-css'
 import { loginUser } from './redux/authReducer';
 import BlogContainer from './component/Blog/BlogContainer';
+import CreateContainer from './component/CreateArticle/CreateContainer';
 
 const App=(props)=> {
   return (
@@ -37,7 +38,11 @@ const App=(props)=> {
                 render ={()=><BlogContainer/> }
 
               />
+              <Route 
+                path="/create/article" 
+                render ={()=><CreateContainer/> }
 
+              />
             </Switch>
           </div>
         </div>
