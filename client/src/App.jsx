@@ -22,7 +22,6 @@ const App=(props)=> {
               <Navbar/>
           </div>
           <div className="col s9">
-            {/* ! LOGIC */}
             <Switch>
 
               <Route path="/auth/register">

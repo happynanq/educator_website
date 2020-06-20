@@ -9,13 +9,12 @@ import { Provider } from 'react-redux';
 import { useAuth } from './hooks/auth.hook';
 
 ReactDOM.render(
-    // <React.StrictMode>
-      <BrowserRouter>
-        <Provider store={store} >
-          <App store={store}/>
-        </Provider>
-      </BrowserRouter>,
-    // </React.StrictMode>,
+      // <BrowserRouter>
+      //   {/* <Provider store={store} > */}
+      //     <App store={store}/>
+      //   {/* </Provider> */}
+      // </BrowserRouter>,
+      <div>wewe</div>,
     document.getElementById('root')
 );
 

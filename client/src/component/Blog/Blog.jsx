@@ -1,11 +1,13 @@
 import React from 'react';
 import Card from './Card/Card';
-const Blog = ()=>{
+const Blog = (props)=>{
+  debugger
   return(
     <>
       <div>Blogpage</div>
       <div className="container">
-        <Card/>
+      {props.card ? props.card.map(e=><Card e={e}/>): <div>Тайтлов пока нет</div> }
+        
       </div>
     </>
   )

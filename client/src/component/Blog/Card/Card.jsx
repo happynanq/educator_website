@@ -1,26 +1,26 @@
 import React from "react"
+import e from "express"
 
 const Card = (props) => {
+  debugger
   return (
     <div className="row">
-      <div className="col s12 m7">
+      {/* <div className="col s12 m7">
         <div className="card">
           <div className="card-image">
-            <img src="https://images.ru.prom.st/137655381_myagkie-igrushki-.jpg" alt="title" />
-            <span className="card-title">Card Title</span> 
+            <img src={props.titleImg} alt="title" />
+            <span className="card-title">{props.titleHeader}</span> 
           </div>
           <div className="card-content">
             <p>
-              I am a very simple card. I am good at containing small bits of
-              information. I am convenient because I require little markup to
-              use effectively.
+              {props.titleText}
             </p>
           </div>
           <div className="card-action">
             <a href="/blog/post">Читать полностью</a>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   )
 }
