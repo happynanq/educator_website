@@ -8,7 +8,7 @@ const Create = (props)=>{
   // const [title, setTitle] = useState('')
   
   const handleSubmit = (formData)=>{
-    debugger
+    
   }
   const togglePreview = ()=>{
     setPreviewBool(!previewBool)

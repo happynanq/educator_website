@@ -31,6 +31,7 @@ export const authApi ={
     })
   },
   checkLogin(formData){ // !login
+    
     let body = JSON.stringify(formData)
     return fetch("http://localhost:5000/api/auth/login",{
       ...configRequest,
@@ -39,7 +40,6 @@ export const authApi ={
     .then(res=>res.json())
     .then(data=>{
       console.log("data",data)
-      console.log("data.session", data.session)
       return data
     })
     
@@ -69,5 +69,61 @@ export const blogApi = {
     .then(data=>{
       return data
     })
+  },
+  GetArticleText(id){
+    let pageid = JSON.stringify({id})
+    return fetch("http://localhost:5000/api/blog/getCurrentArticleText",{
+      ...configRequest,
+      body:pageid
+    }).then(res=>res.json())
+    .then(data=>{
+      if(!data.title){
+        return
+      }
+      return data.title.text
+    })
+  },
+  sendComment(pageId, userId, text){
+    let toBody = JSON.stringify({pageId,userId,text  })
+    
+    return fetch("http://localhost:5000/api/comment/create",{
+      ...configRequest,
+      body:toBody
+    }).then(res=>res.json())
+    .then(data=>{
+      console.log("sendCommitData",data)
+      return data.message
+    })
+  },
+  getComments(pageId, userId){
+    console.log("pageId, userId",pageId, userId)
+    let toBody = JSON.stringify({pageId,userId  })
+    return fetch("http://localhost:5000/api/comment/get",{
+      ...configRequest,
+      body:toBody
+    }).then(res=>res.json())
+    .then(data=>{
+      console.log("getCommitsData",data)
+      return data
+    })
   }
 }
+export const userApi = {
+  getUserData(userId){
+
+  },
+  getUserName(userId){
+    console.log("userId", userId)
+    let toBody = JSON.stringify({userId  })
+    return fetch("http://localhost:5000/api/user/getUser",{
+      ...configRequest,
+      body:toBody
+    }).then(res=>res.json())
+    .then(data=>{
+      console.log("getUserNameData",data)
+      return data
+    })
+  }
+}
+// /api/comment/get
+// /api/comment/create

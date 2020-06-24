@@ -2,7 +2,6 @@ const LOGIN_USER="LOGIN_USER"
 const LOGOUT_USER="LOGOUT_USER"
 
 const initialState = {
-  fucus:false,
   token:null,
   userId:null,
   role : "User",
@@ -12,22 +11,25 @@ const initialState = {
 export const authReducer = (state=initialState, action)=>{
   switch (action.type) {
     case LOGIN_USER:
+      
       return{
-        ...state, token:action.token, userId:action.userId
+        ...state, token:action.token, userId:action.userId, role:action.role
       }
     case LOGOUT_USER:
         return{
-          ...state, token:null, userId:null
+          ...state, token:null, userId:null, role:"Unregister"
         }
     default:
       return state
   }
 }
-export const loginUser=(userId, token)=>{
-  localStorage.setItem("userData",JSON.stringify({userId, token}))
+export const loginUser=(userId, token, role)=>{
+  
+  localStorage.setItem("userData",JSON.stringify({userId, token, role}))
+  
   return{
     type:LOGIN_USER,
-    userId, token
+    userId, token, role
   }
 }
 export const logoutUser=()=>{

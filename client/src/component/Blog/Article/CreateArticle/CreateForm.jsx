@@ -37,7 +37,7 @@ const CreateForm = (props)=>{
       M.toast({html:"Вы что то не ввели "})
       return
     }
-    debugger
+    
     const  data = {
       titleImg, titleHeader, titleText,
       text:textareaRef.current.value

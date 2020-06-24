@@ -7,7 +7,7 @@ const schema = new Schema({
   titleHeader:{type:String, required:true},
   titleText:{type:String, required:true},
   titleImg:{type:String, required:true},
-  link:{type:Schema.Types.ObjectId}
+  link:{type:Schema.Types.ObjectId},
 
 })
 

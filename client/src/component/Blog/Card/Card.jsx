@@ -1,26 +1,32 @@
 import React from "react"
-import e from "express"
+import { Link, Route } from "react-router-dom"
 
 const Card = (props) => {
-  debugger
+  const readFullHandler = ()=>{
+    return <Route path={"/blog/post/"+props.e._id} render={()=><div dangerouslySetInnerHTML={setHtml()}></div>}/>
+  }
+  const setHtml = ()=>({
+    __html:props.e.text
+  })
   return (
     <div className="row">
-      {/* <div className="col s12 m7">
-        <div className="card">
+
+      <div className="col s12 m7 ">
+        <div className="card  cyan lighten-3">
           <div className="card-image">
-            <img src={props.titleImg} alt="title" />
-            <span className="card-title">{props.titleHeader}</span> 
+            <img src={props.e.titleImg} alt="title" />
+            <span className="card-title">{props.e.titleHeader}</span> 
           </div>
           <div className="card-content">
             <p>
-              {props.titleText}
+              {props.e.titleText}
             </p>
           </div>
           <div className="card-action">
-            <a href="/blog/post">Читать полностью</a>
+            <Link to={"/blog/post/"+props.e._id} onClick={readFullHandler}>Читать полностью</Link>
           </div>
         </div>
-      </div> */}
+      </div>
     </div>
   )
 }

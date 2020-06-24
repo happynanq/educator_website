@@ -2,3 +2,9 @@
   width: 100px;
   
 }
+.nav{
+  color: #FF9073 !important;
+}
+.logout{
+  padding-right: 10px; 
+}

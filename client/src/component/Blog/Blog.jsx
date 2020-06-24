@@ -1,8 +1,7 @@
 import React from 'react';
 import Card from './Card/Card';
 const Blog = (props)=>{
-  debugger
-  return(
+    return(
     <>
       <div>Blogpage</div>
       <div className="container">

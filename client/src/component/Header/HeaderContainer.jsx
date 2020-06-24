@@ -9,13 +9,18 @@ class HeaderContainer extends React.Component {
   // constructor(props){
   //   this.props = props
   // }
-  componentDidMount(){
-    let checkRegister = JSON.parse( localStorage.getItem("userData"))
-    if(!checkRegister){
-      return
+  componentWillMount(){
+
+    const start =async()=>{
+      let checkRegister = JSON.parse( localStorage.getItem("userData"))
+      if(!checkRegister){
+        return
+      }
+    
+      let {userId, token, role}=checkRegister
+      await this.props.loginUser(userId, token, role)
     }
-    let {userId, token}=checkRegister
-    this.props.loginUser(userId, token)
+    start()
   }
   render(){
     return(

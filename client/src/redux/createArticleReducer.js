@@ -12,7 +12,7 @@ const initialState = {
 export const createArticleReducer = (state=initialState, action)=>{
   switch (action.type) {
     case SEND_ARTICLE:
-      debugger
+      
       return{
         ...state
       }

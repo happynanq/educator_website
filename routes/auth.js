@@ -48,7 +48,7 @@ router.post("/register",[
     }
     const hashedPassword = await bcrypt.hash(password, 12)
     const user = new User({
-      email, password: hashedPassword, privilege, userName
+      email, password: hashedPassword, privilege, userName, avatar:''
     })
     await user.save()
     res.status(201).json({message:"Пользователь успешно создан"})
@@ -94,7 +94,7 @@ router.post("/login", [
         {expiresIn:"1h"}
       )
 
-      res.json({token, userId:user.id, message:"welcome"})
+      res.json({token, userId:user.id, message:"welcome", role:user.privilege})
       // TODO: записать данные в ui->bll(redux)
   } catch (e) {
     res.status(400).json({falseMessage:"Неизвестная ошибка регистрации"})
