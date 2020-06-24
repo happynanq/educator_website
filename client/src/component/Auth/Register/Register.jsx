@@ -12,7 +12,7 @@ const Register = (props)=>{
     console.log("formDataRegister",formData);
     let toHandle = authApi.sendLogin(formData)
     let a = await handleMessage(toHandle) 
-    debugger
+    
     if(a === "error"){
       return
     }

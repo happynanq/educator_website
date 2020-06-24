@@ -1,5 +1,6 @@
 .navigation{
   height: 100%;
+  background:linear-gradient(180deg, #91e6f1 , #0097a7 )
 }
 .test{
   /* background-color: #fff; */
@@ -9,6 +10,18 @@
 }
 div>a{
   color: black;
+  transition: 1000ms;
+}
+
+.link:hover{
+  color:#fff;
+  transition: 500ms;
+}
+
+.activeLink{
+  color: gold !important;
+  transition: 1000ms;
+  font-weight: bold;
 }
 nav>div{
   padding-left: 10px;

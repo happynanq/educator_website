@@ -14,16 +14,16 @@ const CreateFormPoints = (props)=>{
     const element = e.currentTarget
     console.log(element)
     // element.innerHTML 
-
+    props.addTagInText(element.innerHTML)
   }
   return (
     <span className={s.PointWrapper }>
       
       {props.option.content ? 
-        <>
+        <>  
           <Link className='dropdown-trigger btn grey darken-2'  data-target='dropdown1'>{props.option.title}</Link>
 
-          <ul id='dropdown1' class='dropdown-content'>
+          <ul id='dropdown1' className='dropdown-content'>
             {props.option.content.map(c=> <li onClick={clickHandler}>{c}</li> )}
           </ul>
         </>

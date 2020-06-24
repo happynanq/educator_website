@@ -13,12 +13,12 @@ const Login = (props) => {
     let toHandle = authApi.checkLogin(formData)
     handleMessage(toHandle)
     .then(data=>{
-      debugger
+      
       if(data === "error"){
         return
       }
-      debugger
-      props.loginUser(data.userId, data.token, )
+      
+      props.loginUser(data.userId, data.token,data.role )
       history.push("/")
     })
 

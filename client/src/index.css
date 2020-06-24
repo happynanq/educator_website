@@ -1,7 +1,9 @@
 @import "~materialize-css/dist/css/materialize.min.css";
 
 body{
-  background-color: burlywood;
+  background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ9xFD5JzMIcqgy-Hums_BWvpZ1tZI73dotUlS0ALCN_sRvgeL3&usqp=CAU");
+  
+  /* background:#fff; */
 }
 .row>div.s3{
   height: 100vh; 
