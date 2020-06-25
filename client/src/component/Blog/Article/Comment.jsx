@@ -8,7 +8,7 @@ const Comment = (props)=>{
   const [avatar, setAvatar] = useState("")
   useEffect(() => {
     let a  = async()=>{
-      debugger
+      
       const a = await props.getName(props.userId).then(res=>res)
       setName( a.userName)
       setAvatar(a.avatar)

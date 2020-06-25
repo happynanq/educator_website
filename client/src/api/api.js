@@ -125,5 +125,22 @@ export const userApi = {
     })
   }
 }
+export const ProfileApi = {
+  changeUserData(userData,userId){
+    console.log("userId", userId)
+    console.log("userData", userData)
+    debugger
+    let toBody = JSON.stringify({userId, userData  })
+    debugger
+    return fetch("http://localhost:5000/api/profile/changeData",{
+      ...configRequest,
+      body:toBody
+    }).then(res=>res.json())
+    .then(data=>{
+      console.log("changeUserData",data)
+      return data
+    })
+  }
+}
 // /api/comment/get
 // /api/comment/create

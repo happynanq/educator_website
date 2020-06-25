@@ -14,8 +14,6 @@ router.get('/', (req,res)=>{
 router.post("/getCard",async(req,res)=>{
   console.log("hello there! getCard here!")
   const allCard = await Post.find()
-  console.log(allCard)
-  console.log("WEWE POWER")
   res.json({message:"Все карточи успешно получены!",card:allCard})
 })
 

@@ -9,7 +9,6 @@ const Comment = require("../models/Comment");
 const router = Router()
 
 router.get("/", (req,res)=>{
-  console.log("req.session",req.session)
 
   res.send("Hello comment")
 })
@@ -22,7 +21,6 @@ router.post("/create", async (req,res)=>{
   console.log("Create : ",text, userId, pageId)
   const comment = await new Comment({text, userId, pageId})
   await comment.save()
-  console.log(comment)
   res.status(201).json({message:"Комментарий был отправлен"})
 })
 // /api/comment/get
@@ -33,7 +31,6 @@ router.post("/get", async (req,res)=>{
     const {  pageId} = req.body
     console.log("getComment",  pageId)
     const comments = await Comment.find({pageId})
-    console.log("comment: ",comments)
     res.status(201).json({message:"Комментарии были получены", comments})
   } catch (e) {
     console.log(e)

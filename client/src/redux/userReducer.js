@@ -35,7 +35,7 @@ export const setUserData = (userId)=> async(dispatch)=>{
   dispatch(setUser(data))
 }
 
-export const getUserName = (userId)=> async(dispatch)=>{
+export const getUserName = (userId)=> async(dispatch)=>{ //(get all data):D
   return await userApi.getUserName(userId)
 }
 

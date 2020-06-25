@@ -9,7 +9,6 @@ const Comment = require("../models/Comment");
 const router = Router()
 
 router.get("/", (req,res)=>{
-  console.log("req.session",req.session)
 
   res.send("Hello user")
 })
@@ -27,11 +26,10 @@ router.post("/getUser", async (req,res)=>{
   const {userId} = req.body
   console.log("userId from user route:",userId)
   const userData = await User.findOne({_id:userId})
-  console.log(userData)
   res.status(201).json({message:"Пользователь получен!",userData})
 })
 
-
+//findByIdAndUpdate
 
 
 

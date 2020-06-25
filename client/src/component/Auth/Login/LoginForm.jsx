@@ -2,6 +2,10 @@ import React from "react";
 import { reduxForm, Form, Field } from "redux-form";
 
 const LoginForm = (props) => {
+  const handleRestorePassword = (e)=>{
+    e.preventDefault()
+    console.log("WEWE");
+  }
   return (
       <form className="col s12" onSubmit={props.handleSubmit}>
 
@@ -20,6 +24,7 @@ const LoginForm = (props) => {
         </div>
 
         <button className="btn">Войти</button>
+        <button style={{marginLeft : 10 +"px"}} className="btn" onClick={handleRestorePassword}>Восстановить пароль</button>
 
       </form>
   );
