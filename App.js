@@ -21,6 +21,7 @@ app.use("/api/blog", require("./routes/blog"))
 app.use("/api/comment", require("./routes/comment"))
 app.use("/api/create", require("./routes/createTitle"))
 app.use("/api/user", require("./routes/user"))
+app.use("/api/profile", require("./routes/profile"))
 
 app.use(session({
   secret:"My secret key",

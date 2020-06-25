@@ -8,7 +8,6 @@ const router = Router()
 
 // /api/auth/register
 router.get("/register",(req,res)=>{
-  console.log("req.session",req.session)
 
   res.send("Hello")
 })
@@ -17,7 +16,6 @@ router.post("/register",[
   check("email").isEmail(),
   check("password").isLength({min:6})
 ], async(req, res)=>{
-  console.log("req.session",req.session)
 
   console.log("req.body register : ",req.body)
 

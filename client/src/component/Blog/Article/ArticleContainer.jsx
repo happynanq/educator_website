@@ -31,9 +31,11 @@ const ArticleContainer = (props)=>{
     }
 
     if(!localStorage.getItem("userData")){
-      return
+      
+    }else{
+      getUsers(JSON.parse(localStorage.getItem("userData")).userId )
     }
-    getUsers(JSON.parse(localStorage.getItem("userData")).userId )
+    
     fetchData()
   }, [rerender]);
   props.getArticleText(props.match.params.id)
@@ -43,7 +45,7 @@ const ArticleContainer = (props)=>{
   })
   const getUserNameToComment= async(userId)=>{
     let wewe = await props.getUserName(userId)
-    debugger
+    
     return {userName:wewe.userData.userName, avatar:wewe.userData.avatar}
   }
   

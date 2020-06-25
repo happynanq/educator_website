@@ -5,7 +5,7 @@ import s from "./Navbar.module.css"
   return(
     <nav className={s.navigation }>
       <div>
-        <NavLink to="/main" className={s.link} activeClassName={s.activeLink}>Главная страница</NavLink>
+        <NavLink to="/main" className={s.link} activeClassName={s.activeLink}>О Авторе</NavLink>
       </div>
       <div>
         <NavLink to="/blog" className={s.link} activeClassName={s.activeLink}>Блог</NavLink>
@@ -15,7 +15,7 @@ import s from "./Navbar.module.css"
       </div> :''}
       
       <div className={s.test}>
-        <NavLink to="/me" className={s.link} activeClassName={s.activeLink}>Мой профиль</NavLink>
+        <NavLink to="/me" className={s.link} activeClassName={s.activeLink}>Профиль</NavLink>
       </div>
       
     </nav>

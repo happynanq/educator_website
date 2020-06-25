@@ -5,6 +5,10 @@ const ArticleForm = (props)=>{
   const [text,setText] = useState()
   
   const handleClick = async()=>{
+    if(!props.userId){
+      alert("Чтобы оставить комментарий вы должны зарегистрироваться  ")
+      return
+    }
     console.log("wewe",  await props.sendComment(props.match.params.id,props.userId, text ))
     
     setText("")
