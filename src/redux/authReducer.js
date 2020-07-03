@@ -1,4 +1,4 @@
-import { axiosReqMethods } from "../api/api";
+import { axiosReqMethods, authAPI } from "../api/api";
 
 const SET_USER_DATA = "SET_USER_DATA";
 const SET_USER_PHOTO = "SET_USER_PHOTO";
@@ -48,6 +48,7 @@ export const setAuthInfo=(photo)=>{
 export const registerCurrentUser = ()=>dispatch=>{
   axiosReqMethods.getAuthUserData()
         .then((response) => {
+          // debugger
           if(response.resultCode === 0 ){
             // let {id, email, login} = response.data.data 
             let userData = {...response.data}
@@ -63,4 +64,36 @@ export const registerCurrentUser = ()=>dispatch=>{
                   })
           }
           })
+}
+// export 
+
+export const loginUser = (email, password )=>  async  (dispatch)=>{
+  // authAPI.loginUser() 
+  // .then(res=>{
+  //   console.log("res",res)
+  //   console.log(res.data.resultCode)
+  // })
+  try{
+
+    console.log(email, password)
+    debugger
+    await fetch("https://social-network.samuraijs.com/api/1.0/auth/login",
+    {
+      method:"POST",
+      body:{email, password}, 
+      // headers:
+      // {
+      //   withCredentials: true,
+      //   // "Content-Type" : "application/json", 
+      //   "Access-Control-Allow-Headers":true
+      // }
+    })
+  
+      .then(res=>{
+        
+        res.json()
+      }).then(res=>{console.log(res)})
+  }catch (e) {
+    console.log("autch error: ", e)
+  }
 }

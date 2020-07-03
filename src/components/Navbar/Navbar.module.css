@@ -29,3 +29,6 @@ a .activeLink{
   color:gold ;
   
 }
+.activeLink{
+  color:gold !important;
+}

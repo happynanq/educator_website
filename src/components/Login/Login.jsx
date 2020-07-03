@@ -1,8 +1,23 @@
 import React from 'react'
-const Login = ()=>{
+import LoginReduxForm from './LoginForm'
+import { connect } from 'react-redux';
+import { loginUser } from '../../redux/authReducer';
+// import s from "./Login.module.css"
+export const Login = (props)=>{
+  const onSubmit = formData=>{
+    console.log("formData",formData);
+    props.loginUser(formData.login, formData.password)
+  }
   return(
-    <div>Login</div>
+    <div>
+      <h1>Login</h1>
+      <LoginReduxForm onSubmit={onSubmit}/>
+    </div>
   )
 }
-
-export default Login
+// const mapStateToProps =()=>{
+//   return{}
+// }
+// export default connect(mapStateToProps,{
+//   loginUser
+// })(Login)

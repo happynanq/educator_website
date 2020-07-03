@@ -1,8 +1,10 @@
 import React from 'react'
 import s from './ProfileInfo.module.css'
 import Preloader from '../../common/preloader/preloader' 
+import ProfileStatus from './ProfileStatus'
 
 const ProfileInfo = (props)=>{
+
   if(!props.profile ){
     return <div>
       <Preloader/>
@@ -17,26 +19,7 @@ const ProfileInfo = (props)=>{
           alt="content-img"
         /> */}
       </div>
-      <div className={s.wrapper__block +' '+ s.wrapper__block_2}>
-        <div className={s.wrapper__content + " " + s.wrapper__content_1}>
-          <img src={props.profile.photos.large} alt="AVATAR"/>
-        </div>  
-        <div className={s.wrapper__content + " " + s.wrapper__content_2} >
-          <div className={s.fullName}>{props.profile.fullName}</div>
-          <div className={s.aboutMe}>
-            <div>About Me:</div>
-            <div>{props.profile.aboutMe}</div>
-          </div>
-        </div>
-        <div className={s.wrapper__content + " " + s.wrapper__content_3}>
-        <div>
-          <div>Job:</div>
-          <div> search work: {props.profile.lookingForAJob ? "YES" : "NO"} </div>
-          <div> search work status: {props.profile.lookingForAJobDescription} </div>
-        </div>
-        </div>
-
-      </div>
+      <ProfileStatus{...props}/>
     </div>
       
   );

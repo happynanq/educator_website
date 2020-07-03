@@ -7,7 +7,7 @@ import { axiosReqMethods } from '../../api/api';
 
 class HeaderContainer extends React.Component{
   componentDidMount(){
-    console.log(this.props.login, 'login');
+    // console.log(this.props.login, ' - login');
       this.props.registerCurrentUser()
         // axiosReqMethods.getAuthUserData()
         // .then((response) => {

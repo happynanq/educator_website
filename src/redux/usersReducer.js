@@ -127,8 +127,8 @@ export const follow = (userId) => (dispatch) => {
 
 export const unfollow = (userId) => (dispatch) => {
 debugger
-dispatch(toggleIsFollowingProgress(true, userId))
-axiosReqMethods
+  dispatch(toggleIsFollowingProgress(true, userId))
+  axiosReqMethods
   .unfollow(userId)
 
   .then((response) => {

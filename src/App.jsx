@@ -9,7 +9,7 @@ import NavContainer from './components/Navbar/NavbarContainer';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer.jsx';
 import HeaderContainer from './components/Header/HeaderContainer';
-import Login from './components/Login/Login';
+import LoginContainer from './components/Login/LoginContainer';
 
 const  App = (props)=> {
   // let data2= 12332132121212
@@ -26,7 +26,7 @@ const  App = (props)=> {
           <Route path="/dialogs" render={ () => <DialogsContainer />} />
 
           <Route path="/users" render={()=> <UsersContainer/>} />
-          <Route path="/login" render={()=> <Login/>} />
+          <Route path="/login" render={()=> <LoginContainer/>} />
 
 
           

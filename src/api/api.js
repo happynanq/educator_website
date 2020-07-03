@@ -20,8 +20,8 @@ export const axiosReqMethods = {
       .then(res=> res.data)
   },
   getProfilePage(id){
-    // console.log("getProfilePage", id)
-    return instance.get(`profile/${id}`).then(res=>res.data)
+    console.warn("Obsolete method. Use profileAPI ")
+    return profileAPI.getProfilePage(id)
   },
   follow(userId){
     return instance.post(
@@ -36,5 +36,26 @@ export const axiosReqMethods = {
       
     )
     
+  }
+}
+export const profileAPI = {
+  getProfilePage(id){
+    return instance.get(`profile/${id}`).then(res=>res.data)
+  },
+  getStatus(id){
+    // console.log("id from api",id)
+    return instance.get(`profile/status/${id}`).then(res=>{
+      console.log('res.data',res.data)
+      return res.data
+    })
+  },
+  updateStatus(status){
+    return instance.put(`profile/status`,{ status})
+  }
+}
+
+export const authAPI = {
+  loginUser(){
+    return instance.post("auth/login")
   }
 }

@@ -1,8 +1,9 @@
-import { axiosReqMethods } from "../api/api";
+import { axiosReqMethods, profileAPI } from "../api/api";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_STATUS = "SET_STATUS";
 
 
 
@@ -12,7 +13,8 @@ let initialState = {
         { message: "Nice social network ", id: 2, likesCount: 13 },
       ],
       newPostText: "abc",
-      profile:null
+      profile:null, 
+      status:' '
     }
 
 export const profileReducer = (state=initialState, action) => {
@@ -37,16 +39,26 @@ export const profileReducer = (state=initialState, action) => {
       // this._callSubscribe(this.getState());
       return stateCopy
 
-      case SET_USER_PROFILE:
+    case SET_USER_PROFILE:
 
-        return{...state, profile:action.profile}
-      
+      return{...state, profile:action.profile}
+
+    case SET_STATUS:
+
+      return{...state, status:action.status}
     default:
 
       return state
   }
 
 };
+export const setStatus = (status)=>{
+  return{
+    type:SET_STATUS,
+    status
+  }
+}
+
 export const changePostActionCreator = (text) => {
   return {
     type: UPDATE_NEW_POST_TEXT,
@@ -70,11 +82,8 @@ export const setUserProfile = (profile) => {
 export const renderUserProfile = (checkUserId)=>(dispatch)=>{
   axiosReqMethods.getAuthUserData()
     .then(res=>{
-      console.log('object', res.data)
       let userId= res.data.id 
-      console.log(userId, 'userod');
       userId = checkUserId ? checkUserId : userId
-      console.log(userId, 'userod');
 
       axiosReqMethods.getProfilePage(userId)
         .then((data) => {
@@ -83,3 +92,18 @@ export const renderUserProfile = (checkUserId)=>(dispatch)=>{
         });
     })
 }
+export const getStatus = (userID)=>dispatch=>{
+  // debugger
+  console.log("userID",userID)
+  profileAPI.getStatus(userID).then(res=>{
+    dispatch(setStatus(res))
+  })
+} 
+
+export const updateStatus = (status)=>dispatch=>{
+  profileAPI.updateStatus(status).then(res=>{
+    if(res.data.resultCode === 0 ){
+      dispatch(setStatus(status))
+    } 
+  })
+} 
