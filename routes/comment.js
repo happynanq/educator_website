@@ -17,9 +17,9 @@ router.get("/", (req,res)=>{
 
 // /api/comment/create
 router.post("/create", async (req,res)=>{
-  const {text, userId, pageId} = req.body
-  console.log("Create : ",text, userId, pageId)
-  const comment = await new Comment({text, userId, pageId})
+  const {text, userId, id} = req.body
+  console.log("Create : ",text, userId, id)
+  const comment = await new Comment({text, userId, pageId:id})
   await comment.save()
   res.status(201).json({message:"Комментарий был отправлен"})
 })

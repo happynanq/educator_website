@@ -1,15 +1,26 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
+import { useHttp } from '../../../hooks/http.hook';
+import { useMessage } from '../../../hooks/message.hook';
 
 const ArticleForm = (props)=>{
   const [text,setText] = useState()
-  
+  const {request} = useHttp()
+  const message = useMessage()
   const handleClick = async()=>{
     if(!props.userId){
       alert("Чтобы оставить комментарий вы должны зарегистрироваться  ")
       return
     }
-    console.log("wewe",  await props.sendComment(props.match.params.id,props.userId, text ))
+    try {
+      const response = request("/api/comment/create","POST",{id:props.match.params.id,userId:props.userId, text})
+      const data = await response
+      message(data.message)
+      
+    } catch (e) {
+      e.map(e=>message(e))
+    }
+    // console.log("wewe",  await props.sendComment(t ))
     
     setText("")
     props.setRerender("")

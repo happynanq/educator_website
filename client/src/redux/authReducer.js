@@ -24,7 +24,6 @@ export const authReducer = (state=initialState, action)=>{
   }
 }
 export const loginUser=(userId, token, role)=>{
-  
   localStorage.setItem("userData",JSON.stringify({userId, token, role}))
   
   return{

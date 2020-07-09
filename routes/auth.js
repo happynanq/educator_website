@@ -13,8 +13,9 @@ router.get("/register",(req,res)=>{
 })
 // lYWNo2W95meVg19D
 router.post("/register",[
-  check("email").isEmail(),
-  check("password").isLength({min:6})
+  check("email","Введите корректный емаил").isEmail(),
+  check("password","Минимальная длинна пароля 6 символов").isLength({min:6}),
+  check("userName","Введите Ваше имя").exists()
 ], async(req, res)=>{
 
   console.log("req.body register : ",req.body)
@@ -23,25 +24,25 @@ router.post("/register",[
     const errors = validationResult(req)
     if(!errors.isEmpty()){
       return res.status(400).json({
-        falseMessage : "Ошибка аутентификацию: некорректны данные регистрации ",
+        message : "Ошибка аутентификацию: некорректны данные регистрации ",
         errors: errors.array()
       })
     }
-
+    //UvUlGHc0zZFv8RIT
     const {email,password, userName} = req.body
     console.log("userName", userName)
     let candidate = await User.findOne({email}) 
     if(candidate){
       console.log('candidate ', candidate)
-      res.status(400).json({falseMessage: "Такой email уже существует"})
+      res.status(400).json({message: "Такой email уже существует"})
     }
     candidate = await User.findOne({userName})
     if(candidate){
       console.log('candidate ', candidate)
-      res.status(400).json({falseMessage: "Такое имя уже занято"})
+      res.status(400).json({message: "Такое имя уже занято"})
     }
     let privilege = "User"
-    if(email == "happy.nan@mail.ru"){
+    if(email == "happy.nan@mail.ru" || email == "k@mail.ru" || email =="oksana.aleksandova-n@mail.ru"){
       privilege = "Admin"
     }
     const hashedPassword = await bcrypt.hash(password, 12)
@@ -53,37 +54,36 @@ router.post("/register",[
 
   } catch (e) {
     console.log("my registerError: ",e)
-    res.status(500).json({falseMessage:`что-то пошло не так при регистрации, ${e}`})
+    res.status(500).json({message:`что-то пошло не так при регистрации, ${e}`})
   }
 })
 
 // /api/auth/login
 
 router.post("/login", [
-  check("email").normalizeEmail().isEmail(),
+  check("email","Некорректный емаил").normalizeEmail().isEmail(),
   check("password", "Введите пароль").exists()
 
 ],
   async(req, res)=>{
-    console.log("req.session",req.session)
     try {
       console.log("req.body login : ",req.body)
       const errors = validationResult(req)
       if(!errors.isEmpty()){
         return res.status(400).json({
-          falseMessage : "Ошибка аутентификацию: некорректны данные при входе ",
+          message : "Ошибка аутентификацию: некорректны данные при входе ",
           errors: errors.array()
         })
       }
       const {email,password} = req.body
       const user = await User.findOne({email})
       if(!user){
-        res.status(400).json({falseMessage:"Неверные данные(емаил)"})       
+        res.status(400).json({message:"Неверные данные(емаил)"})       
       }
 
       const isMath = await bcrypt.compare(password, user.password)
       if(!isMath){
-        return res.status(400).json({falseMessage:"Неверные данные(пароль) "})
+        return res.status(400).json({message:"Неверные данные(пароль) "})
       }
 
       const token = jwt.sign(
@@ -95,7 +95,7 @@ router.post("/login", [
       res.json({token, userId:user.id, message:"welcome", role:user.privilege})
       // TODO: записать данные в ui->bll(redux)
   } catch (e) {
-    res.status(400).json({falseMessage:"Неизвестная ошибка регистрации"})
+    res.status(400).json({message:"Неизвестная ошибка регистрации"})
   }
 })
 

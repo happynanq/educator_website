@@ -1,11 +1,14 @@
 import React, { useEffect, useRef } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { reduxForm } from 'redux-form';
 import s from './Create.module.css'
 import M from 'materialize-css'; 
 import CreateFormPoints from './CreateFormPointer'
 import { createTag } from './createTag';
+import { useHttp } from '../../../../hooks/http.hook';
+import { useMessage } from '../../../../hooks/message.hook';
 const CreateForm = (props)=>{
-  
+  const {request, loading} = useHttp()
+  const message = useMessage()
   useEffect(() => {
     let elems = document.querySelectorAll('.dropdown-trigger');
     M.Dropdown.init(elems, {inDuration: 300, outDuration: 225});
@@ -29,6 +32,17 @@ const CreateForm = (props)=>{
     props.setPreviewText(textareaRef.current.value)
     props.togglePreview()
   }
+  const handleFetch = async(data)=>{
+    try {
+      const response = request("/api/create/addCard","POST", data)
+      const fRes = await response
+      message(fRes.message)
+      
+      props.sendArticle(fRes)
+    } catch (e) {
+      e.map(e=>message(e))
+    }
+  }
   const submitHandler = ()=>{
     let titleImg = prompt("Введите ссылку на превью")
     let titleHeader = prompt("Введите заголовок статьи ")
@@ -42,8 +56,9 @@ const CreateForm = (props)=>{
       titleImg, titleHeader, titleText,
       text:textareaRef.current.value
     } 
-    props.sendArticleAsync(data)
-    console.log(textareaRef.current.value);
+    handleFetch(data)
+    // props.sendArticleAsync(data)
+    // console.log(textareaRef.current.value);
   }
 
   return (
@@ -55,7 +70,7 @@ const CreateForm = (props)=>{
           <label htmlFor="titleText">Заголовок</label>
         </div> */}
 
-        {points.map(option=> <CreateFormPoints addTagInText={addTagInText} option={option}/> )}
+        {points.map(option=> <CreateFormPoints addTagInText={addTagInText} option={option} key={option.title.charCodeAt(0)}/> )}
         
         <span className="right">
           <button className="btn" onClick={previewHandler}>Предпросмотр</button>

@@ -21,7 +21,7 @@ const CreateFormPoints = (props)=>{
       
       {props.option.content ? 
         <>  
-          <Link className='dropdown-trigger btn grey darken-2'  data-target='dropdown1'>{props.option.title}</Link>
+          <button className='dropdown-trigger btn grey darken-2'  data-target='dropdown1'>{props.option.title}</button>
 
           <ul id='dropdown1' className='dropdown-content'>
             {props.option.content.map(c=> <li onClick={clickHandler}>{c}</li> )}
@@ -29,7 +29,7 @@ const CreateFormPoints = (props)=>{
         </>
       :
         <>
-          <Link  className='btn grey darken-2' onClick={clickHandler}>{props.option.title}</Link>
+          <button  className='btn grey darken-2' onClick={clickHandler}>{props.option.title}</button>
         </>
       }
 

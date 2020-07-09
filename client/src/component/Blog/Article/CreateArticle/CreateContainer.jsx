@@ -1,7 +1,7 @@
 import React from 'react';
 import Create from './Create';
 import { connect } from 'react-redux';
-import { sendArticleAsync } from '../../../../redux/createArticleReducer';
+import { sendArticle } from '../../../../redux/createArticleReducer';
 
 const CreateContainer = (props)=>{
   return (
@@ -9,5 +9,5 @@ const CreateContainer = (props)=>{
   )
 }
 export default connect(null, {
-  sendArticleAsync
+  sendArticle
 })(CreateContainer)

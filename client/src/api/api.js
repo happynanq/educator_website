@@ -109,9 +109,6 @@ export const blogApi = {
   }
 }
 export const userApi = {
-  getUserData(userId){
-
-  },
   getUserName(userId){
     console.log("userId", userId)
     let toBody = JSON.stringify({userId  })
@@ -129,9 +126,9 @@ export const ProfileApi = {
   changeUserData(userData,userId){
     console.log("userId", userId)
     console.log("userData", userData)
-    debugger
+    
     let toBody = JSON.stringify({userId, userData  })
-    debugger
+    
     return fetch("http://localhost:5000/api/profile/changeData",{
       ...configRequest,
       body:toBody

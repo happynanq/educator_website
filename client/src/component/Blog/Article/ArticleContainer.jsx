@@ -5,14 +5,16 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';
-import { getArticleText, sendComment, getComment } from '../../../redux/blogReducer';
+import { getArticleText, sendComment, getComment,setArticleText } from '../../../redux/blogReducer';
 import s from "../Blog.module.css"
 import { setUserData, getUserName } from '../../../redux/userReducer';
 import Comment from './Comment';
 import ArticleForm from './ArticleForm';
+import { useHttp } from '../../../hooks/http.hook';
 const ArticleContainer = (props)=>{
   const [comments, setComments] = useState([])
   const [rerender, setRerender] = useState(null)
+  const {request} = useHttp()
   let one = ''
   
   
@@ -24,11 +26,32 @@ const ArticleContainer = (props)=>{
     async function fetchData(){
       console.log("userId", props.userId);
       // setComments(await props.getComment(props.match.params.id))
-      let u = await props.getComment(props.match.params.id)
-      if(u !=comments){
-        setComments(u)
+      const response = request("/api/comment/get","POST",{pageId:props.match.params.id} )
+      const data = await response
+      if(data.comments != comments){
+        setComments(data.comments)
       }
+      // let u = await props.getComment(props.match.params.id)
+      // if(u !=comments){
+      //   setComments(u)
+      // }
     }
+    const fetchArticle = async(id)=>{
+      try {
+
+        
+        const response = request("/api/blog/getCurrentArticleText","POST", Object({id}) )
+        const data = await response
+        
+        props.setArticleText(data.title.text)
+      } catch (e) {
+        
+      }
+      
+    }
+    fetchArticle(props.match.params.id )
+    // props.getArticleText(props.match.params.id)
+
 
     if(!localStorage.getItem("userData")){
       
@@ -38,15 +61,18 @@ const ArticleContainer = (props)=>{
     
     fetchData()
   }, [rerender]);
-  props.getArticleText(props.match.params.id)
+  //
+  
   
   const setHtml = ()=>({
     __html:props.pageText
   })
   const getUserNameToComment= async(userId)=>{
-    let wewe = await props.getUserName(userId)
+    const response = request("/api/user/getUser", "POST", {userId} )
+    const data = await response
+    // let wewe = await props.getUserName(userId)
     
-    return {userName:wewe.userData.userName, avatar:wewe.userData.avatar}
+    return {userName:data.userData.userName, avatar:data.userData.avatar}
   }
   
   
@@ -56,8 +82,8 @@ const ArticleContainer = (props)=>{
       <div className={s.wrapper} dangerouslySetInnerHTML={setHtml()}></div>
       <div className='container'>
         <div > Комментарии </div>
-        <div> { comments.comments 
-          ? comments.comments.map(e=> {
+        <div> { comments 
+          ? comments.map(e=> {
             return(
               <div className="">
                 <Comment userId={e.userId} userText={e.text} getName={getUserNameToComment} />
@@ -78,7 +104,7 @@ const mapStateToProps = (state)=>{
 }
 export default compose(
   connect(mapStateToProps,{
-    getArticleText,sendComment,getComment,setUserData,getUserName
+    getArticleText,sendComment,getComment,setUserData,getUserName,setArticleText
   }),
   withRouter
 )(ArticleContainer)

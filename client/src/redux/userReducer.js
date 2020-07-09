@@ -1,4 +1,4 @@
-import { blogApi, userApi } from "../api/api"
+import { userApi } from "../api/api"
 
 // const LOGIN_USER="LOGIN_USER"
 const SET_USER_DATA="SET_USER_DATA"
@@ -31,8 +31,7 @@ export const setUser=(userData)=>{
 
 export const setUserData = (userId)=> async(dispatch)=>{
   
-  let data = await userApi.getUserData(userId)
-  dispatch(setUser(data))
+  
 }
 
 export const getUserName = (userId)=> async(dispatch)=>{ //(get all data):D

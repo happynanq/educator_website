@@ -10,9 +10,9 @@ import { loginUser } from '../../../redux/authReducer';
   )
 }
 
-let mapStateToProps = (store)=>{
+let mapStateToProps = (store)=>({
   
-}
+})
 export default connect(mapStateToProps, {
   loginUser
 })(LoginConteiner)

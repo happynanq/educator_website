@@ -13,9 +13,7 @@ app.use(cors())
 const host = "127.0.0.1"
 const port = "5000"
 
-app.use(bodyParser.urlencoded({ extended: true }))
-app.use(bodyParser.json({extended:true}))
-app.use(express.json({extended:true})) // ? какая то хрень
+app.use(express.json({extended:true}))
 app.use("/api/auth", require("./routes/auth"))
 app.use("/api/blog", require("./routes/blog"))
 app.use("/api/comment", require("./routes/comment"))
