@@ -33,7 +33,7 @@ const Register = (props)=>{
   return(
     <div className="row">
     <h2>Register</h2>
-      <RegisterForm onSubmit={onSubmit}/>
+      <RegisterForm onSubmit={onSubmit} loading={loading}/>
     </div>
   )
 }

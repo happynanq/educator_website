@@ -34,7 +34,7 @@ const BlogContainer = (props)=>{
   console.log(props.match);
   
   return(
-    <Blog card={card}/>
+    <Blog card={card} loading={loading}/>
   )
 }
 

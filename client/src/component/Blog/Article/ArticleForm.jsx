@@ -5,7 +5,7 @@ import { useMessage } from '../../../hooks/message.hook';
 
 const ArticleForm = (props)=>{
   const [text,setText] = useState()
-  const {request} = useHttp()
+  const {request,loading} = useHttp()
   const message = useMessage()
   const handleClick = async()=>{
     if(!props.userId){
@@ -33,7 +33,7 @@ const ArticleForm = (props)=>{
       <div className="input-field">
         <input id="input" className={"col s11"} type="text" value={text} onChange={handleChange} />
         <label htmlFor="input">Оставьте Комментарий</label>
-        <button className="btn" onClick={handleClick}>Send</button>
+        <button className="btn" onClick={handleClick} disabled={loading}>Send</button>
       </div>
     </>
   )

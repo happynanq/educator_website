@@ -32,7 +32,7 @@ import { reduxForm, Field } from 'redux-form';
         
 
 
-        <button className="btn">Регистрация</button>
+        <button className="btn" disabled={props.loading}>Регистрация</button>
       </form>
   )
 }

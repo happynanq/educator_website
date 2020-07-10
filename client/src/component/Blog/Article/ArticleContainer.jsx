@@ -14,7 +14,7 @@ import { useHttp } from '../../../hooks/http.hook';
 const ArticleContainer = (props)=>{
   const [comments, setComments] = useState([])
   const [rerender, setRerender] = useState(null)
-  const {request} = useHttp()
+  const {request,loading} = useHttp()
   let one = ''
   
   
@@ -67,13 +67,7 @@ const ArticleContainer = (props)=>{
   const setHtml = ()=>({
     __html:props.pageText
   })
-  const getUserNameToComment= async(userId)=>{
-    const response = request("/api/user/getUser", "POST", {userId} )
-    const data = await response
-    // let wewe = await props.getUserName(userId)
-    
-    return {userName:data.userData.userName, avatar:data.userData.avatar}
-  }
+  
   
   
   
@@ -82,14 +76,21 @@ const ArticleContainer = (props)=>{
       <div className={s.wrapper} dangerouslySetInnerHTML={setHtml()}></div>
       <div className='container'>
         <div > Комментарии </div>
-        <div> { comments 
-          ? comments.map(e=> {
-            return(
-              <div className="">
-                <Comment userId={e.userId} userText={e.text} getName={getUserNameToComment} />
-              </div>)}) 
-          : "Комментариев ещё нет!"} 
-        </div>
+        {/* { loading ?
+          <div class="progress">
+            <div class="indeterminate"></div>
+          </div>
+          : */}
+          <div> { comments 
+            ? comments.map(e=> {
+              return(
+                <div className="">
+                
+                  <Comment userId={e.userId} userText={e.text}  />
+                </div>)}) 
+            : "Комментариев ещё нет!"} 
+          </div>
+        {/* } */}
       </div>
       <ArticleForm {...props} setRerender={setRerender}/>
     </>

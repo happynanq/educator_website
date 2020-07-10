@@ -11,7 +11,7 @@ const ProfileContainer = (props)=>{
   const [email, setEmail] = useState('')
   const [privilege, setPrivilege] = useState('')
   const [userId, setUserId] = useState('')
-  const { request} = useHttp()
+  const { request,loading} = useHttp()
   useEffect(() => {
 
     const start = async()=>{
@@ -50,7 +50,15 @@ const ProfileContainer = (props)=>{
   // })
   
   return(
-    <Profile avatar={avatar} name={name} email={email} privilege={privilege} userId={userId} setAvatar={setAvatar}/>
+    <Profile 
+      loading={loading} 
+      avatar={avatar} 
+      name={name} 
+      email={email} 
+      privilege={privilege} 
+      userId={userId} 
+      etAvatar={setAvatar}
+    />
   )
 }
 export default compose(

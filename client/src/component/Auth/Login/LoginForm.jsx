@@ -23,8 +23,8 @@ const LoginForm = (props) => {
           </div>
         </div>
 
-        <button className="btn">Войти</button>
-        <button style={{marginLeft : 10 +"px"}} className="btn" onClick={handleRestorePassword}>Восстановить пароль</button>
+        <button className="btn" disabled={props.loading}>Войти</button>
+        {/* <button style={{marginLeft : 10 +"px"}} className="btn" onClick={handleRestorePassword}>Восстановить пароль</button> */}
 
       </form>
   );

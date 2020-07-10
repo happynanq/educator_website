@@ -39,10 +39,14 @@ const Login = (props) => {
   }
 
   return (
-    <div className="row">
-      <h2>Login</h2>
-      <LoginForm onSubmit={handleSubmit}/>
-    </div>
+    <>
+      
+      <div className="row">
+        <h2>Login</h2>
+        <LoginForm onSubmit={handleSubmit} loading={loading}/>
+      </div>
+    
+    </>
   );
 };
 export default Login

@@ -5,7 +5,7 @@ const Blog = (props)=>{
     <>
       <div>Blogpage</div>
       <div className="container">
-      {props.card ? props.card.map(e=><Card e={e}/>): <div>Тайтлов пока нет</div> }
+      {props.card ? props.card.map(e=><Card e={e} {...props}/>): <div>Тайтлов пока нет</div> }
         
       </div>
     </>

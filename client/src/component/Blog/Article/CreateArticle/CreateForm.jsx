@@ -77,9 +77,9 @@ const CreateForm = (props)=>{
         </span>
 
         <div className={s.textarea_wrapper}>
-          <textarea ref={textareaRef} name="formText"   data-component="textarea" ></textarea>
+          <textarea ref={textareaRef} name="formText"   data-component="textarea" disabled={loading}></textarea>
         </div>
-        <button className="btn" onClick={submitHandler}>Отправить</button>
+        <button className="btn" onClick={submitHandler} disabled={loading}>Отправить</button>
       </div>
     </div>
   )
