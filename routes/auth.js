@@ -18,7 +18,6 @@ router.post("/register",[
   check("userName","Введите Ваше имя").exists()
 ], async(req, res)=>{
 
-  console.log("req.body register : ",req.body)
 
   try {
     const errors = validationResult(req)

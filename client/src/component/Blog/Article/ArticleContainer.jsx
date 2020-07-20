@@ -24,7 +24,6 @@ const ArticleContainer = (props)=>{
       props.setUserData(userId)
     }
     async function fetchData(){
-      console.log("userId", props.userId);
       // setComments(await props.getComment(props.match.params.id))
       const response = request("/api/comment/get","POST",{pageId:props.match.params.id} )
       const data = await response

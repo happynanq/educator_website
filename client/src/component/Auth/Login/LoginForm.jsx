@@ -4,7 +4,6 @@ import { reduxForm, Form, Field } from "redux-form";
 const LoginForm = (props) => {
   const handleRestorePassword = (e)=>{
     e.preventDefault()
-    console.log("WEWE");
   }
   return (
       <form className="col s12" onSubmit={props.handleSubmit}>

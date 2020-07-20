@@ -25,8 +25,6 @@ export const authApi ={
     })
     .then(res=>res.json())
     .then(data=>{
-      console.log("data",data)
-      console.log("data.session", data.session)
       return data
     })
   },
@@ -39,7 +37,6 @@ export const authApi ={
     })
     .then(res=>res.json())
     .then(data=>{
-      console.log("data",data)
       return data
     })
     
@@ -54,7 +51,6 @@ export const createTitle ={
     })
     .then(res=>res.json())
     .then(data=>{
-      console.log("data",data)
       return data
     })
   }
@@ -91,41 +87,34 @@ export const blogApi = {
       body:toBody
     }).then(res=>res.json())
     .then(data=>{
-      console.log("sendCommitData",data)
       return data.message
     })
   },
   getComments(pageId, userId){
-    console.log("pageId, userId",pageId, userId)
     let toBody = JSON.stringify({pageId,userId  })
     return fetch("http://localhost:5000/api/comment/get",{
       ...configRequest,
       body:toBody
     }).then(res=>res.json())
     .then(data=>{
-      console.log("getCommitsData",data)
       return data
     })
   }
 }
 export const userApi = {
   getUserName(userId){
-    console.log("userId", userId)
     let toBody = JSON.stringify({userId  })
     return fetch("http://localhost:5000/api/user/getUser",{
       ...configRequest,
       body:toBody
     }).then(res=>res.json())
     .then(data=>{
-      console.log("getUserNameData",data)
       return data
     })
   }
 }
 export const ProfileApi = {
   changeUserData(userData,userId){
-    console.log("userId", userId)
-    console.log("userData", userData)
     
     let toBody = JSON.stringify({userId, userData  })
     
@@ -134,7 +123,6 @@ export const ProfileApi = {
       body:toBody
     }).then(res=>res.json())
     .then(data=>{
-      console.log("changeUserData",data)
       return data
     })
   }

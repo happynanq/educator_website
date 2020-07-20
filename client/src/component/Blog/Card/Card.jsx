@@ -2,7 +2,7 @@ import React from "react"
 import { Link, Route } from "react-router-dom"
 
 const Card = (props) => {
-  debugger
+  
   const readFullHandler = ()=>{
     return <Route path={"/blog/post/"+props.e._id} render={()=><div dangerouslySetInnerHTML={setHtml()}></div>}/>
   }

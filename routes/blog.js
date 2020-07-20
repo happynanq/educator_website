@@ -12,7 +12,6 @@ router.get('/', (req,res)=>{
 
 // /api/blog/getCard
 router.post("/getCard",async(req,res)=>{
-  console.log("hello there! getCard here!")
   const allCard = await Post.find({})
   res.json({message:"Все карточи успешно получены!",card:allCard})
 })

@@ -12,7 +12,6 @@ const Register = (props)=>{
   const message = useMessage()
   const onSubmit = async(formData)=>{
     try {
-      console.log("formDataRegister",formData);
       const response = request("http://localhost:5000/api/auth/register","POST",formData)
       const data = await response
       message(data.message)

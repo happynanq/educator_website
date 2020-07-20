@@ -3,7 +3,7 @@ import s from './Profile.module.css'
 import {ProfileApi} from '../../api/api'
 
 const Profile = (props)=>{
-  debugger
+  
   const handleClick = ()=>{
     const newPhoto = prompt("Введите URL картинки")
     if(!newPhoto){
@@ -18,8 +18,8 @@ const Profile = (props)=>{
       <div className="row">
         <div className="col s4">
         {props.loading ?
-          <div class="progress">
-            <div class="indeterminate"></div>
+          <div className="progress">
+            <div className="indeterminate"></div>
           </div>
         :
           <>
@@ -30,8 +30,8 @@ const Profile = (props)=>{
         </div>
         <div className="col s8">
           {props.loading ?
-            <div class="progress">
-              <div class="indeterminate"></div>
+            <div className="progress">
+              <div className="indeterminate"></div>
             </div>
            :
             <>

@@ -21,7 +21,7 @@ const ProfileContainer = (props)=>{
       }
       const response = request("/api/user/getUser", "POST", {userId:a})
       const data = await response
-      debugger
+      
       const {email, privilege,userName,avatar, _id} = data.userData
       setAvatar(avatar)
       setName(userName)
@@ -57,7 +57,7 @@ const ProfileContainer = (props)=>{
       email={email} 
       privilege={privilege} 
       userId={userId} 
-      etAvatar={setAvatar}
+      setAvatar={setAvatar}
     />
   )
 }
