@@ -1,5 +1,0 @@
-{
-  "mongoURI" :"mongodb+srv://Kirill:UvUlGHc0zZFv8RIT@cluster0.qbtcs.mongodb.net/educator_website?retryWrites=true&w=majority",
-  "jwtSecret" :"Kirill Progremmer"
-
-}
